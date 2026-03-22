@@ -1,0 +1,9 @@
+packages:
+  "framer-motion": "For premium smooth scroll reveals, entry animations, and the interactive factory diagram"
+  "clsx": "Utility for constructing className strings conditionally"
+  "tailwind-merge": "Utility to merge tailwind classes without style conflicts"
+  "lucide-react": "For beautiful consistent iconography across the app"
+
+notes:
+  - "Pure frontend application, no backend required"
+  - "Using static hardcoded content as specified in requirements"
