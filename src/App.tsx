@@ -7,6 +7,7 @@ import NoteDetail from "@/pages/note-detail"
 import Contact from "@/pages/contact"
 import Privacy from "@/pages/privacy"
 import Terms from "@/pages/terms"
+import NotFound from "@/pages/not-found"
 
 function App() {
   return (
@@ -19,9 +20,7 @@ function App() {
       <Route path="/contact" component={Contact} />
       <Route path="/privacy" component={Privacy} />
       <Route path="/terms" component={Terms} />
-      <Route>
-        <Home />
-      </Route>
+      <Route component={NotFound} />
     </Switch>
   )
 }
