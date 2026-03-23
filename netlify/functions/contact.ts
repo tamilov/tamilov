@@ -102,7 +102,7 @@ export const handler: Handler = async (event: HandlerEvent) => {
             ${companyLine}
           </table>
 
-          <div style="border-left:4px solid #F5A623;background:#fffbf0;padding:16px 20px;border-radius:0 6px 6px 0;margin-bottom:28px">
+          <div style="border-left:4px solid #F5A623;background:#f5f5f5;padding:16px 20px;border-radius:6px;margin-bottom:28px">
             <p style="font-weight:700;margin:0 0 8px;color:#1a1a1a">Message</p>
             <p style="white-space:pre-line;margin:0;line-height:1.6;color:#333">${esc(message)}</p>
           </div>
