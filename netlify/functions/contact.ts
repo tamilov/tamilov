@@ -65,7 +65,7 @@ export const handler: Handler = async (event: HandlerEvent) => {
   });
 
   const companyLine = company
-    ? `<tr><td style="padding:8px 0;font-weight:bold;color:#555;width:100px">Company</td><td style="padding:8px 0">${esc(company)}</td></tr>`
+    ? `<tr><td style="padding:10px 16px 10px 0;font-weight:600;color:#1a1a1a;width:140px;vertical-align:top">Project / Company</td><td style="padding:10px 0;color:#444">${esc(company)}</td></tr>`
     : "";
 
   try {
@@ -73,30 +73,41 @@ export const handler: Handler = async (event: HandlerEvent) => {
       from: `"Tamilov Contact" <${gmailUser}>`,
       to: "tamilovdev@gmail.com",
       replyTo: email,
-      subject: `New message from ${name}${company ? ` (${company})` : ""}`,
+      subject: `New contact form submission — Tamilov`,
       text: [
         `Name: ${name}`,
         `Email: ${email}`,
-        company ? `Company: ${company}` : "",
+        company ? `Project / Company: ${company}` : "",
         "",
         `Message:\n${message}`,
+        "",
+        "Sent from Tamilov contact form",
       ]
         .filter(Boolean)
         .join("\n"),
       html: `
-        <div style="font-family:Inter,sans-serif;max-width:560px;margin:0 auto;color:#1a1a1a">
-          <div style="border-bottom:3px solid #1a1a1a;padding-bottom:16px;margin-bottom:24px">
-            <strong style="font-size:18px">Tamilov — New Contact</strong>
-          </div>
-          <table style="width:100%;border-collapse:collapse;margin-bottom:24px">
-            <tr><td style="padding:8px 0;font-weight:bold;color:#555;width:100px">Name</td><td style="padding:8px 0">${esc(name)}</td></tr>
-            <tr><td style="padding:8px 0;font-weight:bold;color:#555">Email</td><td style="padding:8px 0"><a href="mailto:${esc(email)}" style="color:#1a1a1a">${esc(email)}</a></td></tr>
+        <div style="font-family:Inter,Arial,sans-serif;max-width:560px;margin:0 auto;color:#1a1a1a;background:#fff">
+          <h2 style="font-size:22px;font-weight:700;margin:0 0 12px">New Contact Form Submission</h2>
+          <div style="border-bottom:3px solid #F5A623;margin-bottom:24px"></div>
+
+          <table style="width:100%;border-collapse:collapse;margin-bottom:28px">
+            <tr>
+              <td style="padding:10px 16px 10px 0;font-weight:600;color:#1a1a1a;width:140px;vertical-align:top">Name</td>
+              <td style="padding:10px 0;color:#444">${esc(name)}</td>
+            </tr>
+            <tr>
+              <td style="padding:10px 16px 10px 0;font-weight:600;color:#1a1a1a;vertical-align:top">Email</td>
+              <td style="padding:10px 0"><a href="mailto:${esc(email)}" style="color:#1a1a1a">${esc(email)}</a></td>
+            </tr>
             ${companyLine}
           </table>
-          <div style="border-top:1px solid #eee;padding-top:20px">
-            <p style="font-weight:bold;color:#555;margin:0 0 8px">Message</p>
-            <p style="white-space:pre-line;margin:0;line-height:1.6">${esc(message)}</p>
+
+          <div style="border-left:4px solid #F5A623;background:#fffbf0;padding:16px 20px;border-radius:0 6px 6px 0;margin-bottom:28px">
+            <p style="font-weight:700;margin:0 0 8px;color:#1a1a1a">Message</p>
+            <p style="white-space:pre-line;margin:0;line-height:1.6;color:#333">${esc(message)}</p>
           </div>
+
+          <p style="font-size:13px;color:#999;margin:0">Sent from Tamilov contact form</p>
         </div>
       `,
     });
