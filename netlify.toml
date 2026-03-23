@@ -1,0 +1,16 @@
+[build]
+  command   = "pnpm build"
+  publish   = "dist"
+  functions = "netlify/functions"
+
+# Route contact form submissions to the Netlify Function
+[[redirects]]
+  from   = "/api/contact"
+  to     = "/.netlify/functions/contact"
+  status = 200
+
+# SPA fallback — all other routes serve index.html
+[[redirects]]
+  from   = "/*"
+  to     = "/index.html"
+  status = 200
