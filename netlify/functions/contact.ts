@@ -71,7 +71,7 @@ export const handler: Handler = async (event: HandlerEvent) => {
   try {
     await transporter.sendMail({
       from: `"Tamilov Contact" <${gmailUser}>`,
-      to: "tmilovdev@gmail.com",
+      to: "tamilovdev@gmail.com",
       replyTo: email,
       subject: `New message from ${name}${company ? ` (${company})` : ""}`,
       text: [
