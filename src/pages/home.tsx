@@ -5,8 +5,11 @@ import { BrandIntro } from "@/components/sections/BrandIntro"
 import { FactoryWorkflow } from "@/components/sections/FactoryWorkflow"
 import { Ecosystem } from "@/components/sections/Ecosystem"
 import { Philosophy } from "@/components/sections/Philosophy"
+import { BrandStatement } from "@/components/sections/BrandStatement"
 import { Journal } from "@/components/sections/Journal"
+import { Founder } from "@/components/sections/Founder"
 import { WorkTogether } from "@/components/sections/WorkTogether"
+import { HomeContact } from "@/components/sections/HomeContact"
 
 export default function Home() {
   return (
@@ -19,8 +22,11 @@ export default function Home() {
         <FactoryWorkflow />
         <Ecosystem />
         <Philosophy />
+        <BrandStatement />
         <Journal />
+        <Founder />
         <WorkTogether />
+        <HomeContact />
       </main>
 
       <Footer />

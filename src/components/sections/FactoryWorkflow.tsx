@@ -48,86 +48,206 @@ const steps = [
 ]
 
 function StepIllustration({ index }: { index: number }) {
+  const fg = "hsl(var(--foreground))"
+  const ac = "hsl(var(--accent))"
+
   const illustrations = [
+    // 1. Idea — lightbulb moment, radiating sparks from center
     <svg viewBox="0 0 400 300" fill="none" className="w-full h-full">
-      <circle cx="200" cy="150" r="80" stroke="hsl(var(--foreground))" strokeWidth="3" strokeDasharray="8 6" opacity="0.15" />
-      <circle cx="200" cy="150" r="50" stroke="hsl(var(--foreground))" strokeWidth="2" opacity="0.1" />
-      <motion.circle cx="200" cy="150" r="12" fill="hsl(var(--accent))" initial={{ scale: 0 }} animate={{ scale: [1, 1.3, 1] }} transition={{ duration: 2, repeat: Infinity }} />
-      <motion.path d="M140 100 L200 70 L260 100" stroke="hsl(var(--foreground))" strokeWidth="2" opacity="0.2" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1.5 }} />
-      <motion.path d="M140 200 L200 230 L260 200" stroke="hsl(var(--foreground))" strokeWidth="2" opacity="0.2" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1.5, delay: 0.3 }} />
-      <motion.circle cx="120" cy="90" r="6" fill="hsl(var(--foreground))" opacity="0.15" animate={{ y: [0, -8, 0] }} transition={{ duration: 3, repeat: Infinity }} />
-      <motion.circle cx="280" cy="90" r="6" fill="hsl(var(--foreground))" opacity="0.15" animate={{ y: [0, -8, 0] }} transition={{ duration: 3, repeat: Infinity, delay: 1 }} />
-      <motion.rect x="170" y="120" width="60" height="60" rx="12" stroke="hsl(var(--accent))" strokeWidth="2" fill="hsl(var(--accent))" fillOpacity="0.08" animate={{ rotate: [0, 3, -3, 0] }} transition={{ duration: 4, repeat: Infinity }} />
+      <circle cx="200" cy="150" r="100" stroke={fg} strokeWidth="2" strokeDasharray="8 6" opacity="0.08" />
+      <circle cx="200" cy="150" r="65" stroke={fg} strokeWidth="2" opacity="0.1" />
+      <circle cx="200" cy="150" r="30" stroke={ac} strokeWidth="2.5" opacity="0.2" />
+      <motion.circle cx="200" cy="150" r="14" fill={ac} animate={{ scale: [1, 1.25, 1] }} transition={{ duration: 2, repeat: Infinity }} />
+      {[0, 60, 120, 180, 240, 300].map((angle, i) => {
+        const rad = (angle * Math.PI) / 180
+        const x1 = 200 + Math.cos(rad) * 42
+        const y1 = 150 + Math.sin(rad) * 42
+        const x2 = 200 + Math.cos(rad) * 58
+        const y2 = 150 + Math.sin(rad) * 58
+        return <motion.line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke={ac} strokeWidth="2.5" strokeLinecap="round" opacity="0.35" animate={{ opacity: [0.15, 0.45, 0.15] }} transition={{ duration: 2, repeat: Infinity, delay: i * 0.3 }} />
+      })}
+      <motion.path d="M130 80 L155 65 L180 80" stroke={fg} strokeWidth="2" opacity="0.15" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1.5 }} />
+      <motion.path d="M220 220 L245 235 L270 220" stroke={fg} strokeWidth="2" opacity="0.15" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1.5, delay: 0.4 }} />
+      <motion.rect x="65" y="100" width="24" height="24" rx="6" stroke={fg} strokeWidth="1.5" opacity="0.1" animate={{ rotate: [0, 8, -8, 0] }} transition={{ duration: 5, repeat: Infinity }} />
+      <motion.rect x="310" y="180" width="20" height="20" rx="5" stroke={fg} strokeWidth="1.5" opacity="0.1" animate={{ rotate: [0, -8, 8, 0] }} transition={{ duration: 5, repeat: Infinity, delay: 1 }} />
+      <motion.circle cx="320" cy="80" r="6" fill={fg} opacity="0.1" animate={{ y: [0, -6, 0] }} transition={{ duration: 3, repeat: Infinity }} />
+      <motion.circle cx="80" cy="210" r="5" fill={fg} opacity="0.08" animate={{ y: [0, 5, 0] }} transition={{ duration: 3.5, repeat: Infinity }} />
+      <rect x="85" y="255" width="45" height="5" rx="2.5" fill={fg} opacity="0.06" />
+      <rect x="140" y="255" width="30" height="5" rx="2.5" fill={fg} opacity="0.04" />
+      <rect x="270" y="55" width="40" height="5" rx="2.5" fill={fg} opacity="0.06" />
     </svg>,
 
+    // 2. Validation — two cards: checkmark (approved) vs X (rejected), with data bars
     <svg viewBox="0 0 400 300" fill="none" className="w-full h-full">
-      <motion.rect x="60" y="80" width="120" height="140" rx="16" stroke="hsl(var(--foreground))" strokeWidth="2" opacity="0.12" initial={{ scaleY: 0 }} animate={{ scaleY: 1 }} transition={{ duration: 0.6 }} style={{ transformOrigin: "center bottom" }} />
-      <motion.rect x="220" y="80" width="120" height="140" rx="16" stroke="hsl(var(--foreground))" strokeWidth="2" opacity="0.12" initial={{ scaleY: 0 }} animate={{ scaleY: 1 }} transition={{ duration: 0.6, delay: 0.2 }} style={{ transformOrigin: "center bottom" }} />
-      <motion.circle cx="120" cy="130" r="20" fill="hsl(var(--accent))" fillOpacity="0.2" stroke="hsl(var(--accent))" strokeWidth="2" animate={{ scale: [1, 1.1, 1] }} transition={{ duration: 2.5, repeat: Infinity }} />
-      <motion.path d="M120 130 L108 140 L118 150" stroke="hsl(var(--accent))" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.8, delay: 0.5 }} />
-      <motion.circle cx="280" cy="130" r="20" fill="hsl(var(--foreground))" fillOpacity="0.06" stroke="hsl(var(--foreground))" strokeWidth="2" opacity="0.3" />
-      <motion.line x1="270" y1="130" x2="290" y2="130" stroke="hsl(var(--foreground))" strokeWidth="2" opacity="0.3" />
-      <motion.path d="M180 150 L220 150" stroke="hsl(var(--foreground))" strokeWidth="2" strokeDasharray="4 4" opacity="0.2" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1 }} />
-      <motion.polygon points="218,145 228,150 218,155" fill="hsl(var(--foreground))" opacity="0.2" />
-    </svg>,
-
-    <svg viewBox="0 0 400 300" fill="none" className="w-full h-full">
-      <motion.rect x="100" y="60" width="200" height="180" rx="20" stroke="hsl(var(--foreground))" strokeWidth="2.5" opacity="0.12" />
-      <motion.rect x="120" y="90" width="70" height="10" rx="5" fill="hsl(var(--foreground))" opacity="0.1" />
-      <motion.rect x="120" y="110" width="50" height="10" rx="5" fill="hsl(var(--foreground))" opacity="0.07" />
-      <motion.rect x="120" y="140" width="160" height="80" rx="12" fill="hsl(var(--accent))" fillOpacity="0.1" stroke="hsl(var(--accent))" strokeWidth="2" animate={{ scale: [1, 1.02, 1] }} transition={{ duration: 3, repeat: Infinity }} />
-      <motion.circle cx="200" cy="180" r="15" stroke="hsl(var(--accent))" strokeWidth="2" fill="none" animate={{ rotate: 360 }} transition={{ duration: 8, repeat: Infinity, ease: "linear" }} />
-      <motion.rect x="192" y="172" width="16" height="16" rx="3" fill="hsl(var(--accent))" fillOpacity="0.3" />
-      <motion.circle cx="340" cy="80" r="8" fill="hsl(var(--accent))" fillOpacity="0.15" animate={{ y: [0, -6, 0] }} transition={{ duration: 2.5, repeat: Infinity }} />
-      <motion.circle cx="60" cy="220" r="5" fill="hsl(var(--foreground))" opacity="0.1" animate={{ y: [0, 5, 0] }} transition={{ duration: 3, repeat: Infinity }} />
-    </svg>,
-
-    <svg viewBox="0 0 400 300" fill="none" className="w-full h-full">
-      <motion.rect x="80" y="70" width="240" height="160" rx="16" stroke="hsl(var(--foreground))" strokeWidth="2" opacity="0.1" />
-      <motion.rect x="80" y="70" width="240" height="30" rx="0" fill="hsl(var(--foreground))" fillOpacity="0.05" />
-      {[100, 120, 140, 160, 180].map((y, i) => (
-        <motion.rect key={i} x="100" y={y} width={140 - i * 15} height="6" rx="3" fill={i === 2 ? "hsl(var(--accent))" : "hsl(var(--foreground))"} opacity={i === 2 ? 0.4 : 0.08} initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 0.4, delay: i * 0.1 }} style={{ transformOrigin: "left" }} />
+      <rect x="55" y="55" width="130" height="170" rx="16" stroke={fg} strokeWidth="2" opacity="0.12" fill="white" fillOpacity="0.5" />
+      <rect x="215" y="55" width="130" height="170" rx="16" stroke={fg} strokeWidth="2" opacity="0.12" fill="white" fillOpacity="0.5" />
+      <text x="120" y="82" textAnchor="middle" fontSize="11" fontWeight="700" fill={fg} opacity="0.25">OPTION A</text>
+      <text x="280" y="82" textAnchor="middle" fontSize="11" fontWeight="700" fill={fg} opacity="0.25">OPTION B</text>
+      {[100, 118, 136].map((y, i) => (
+        <motion.rect key={`a${i}`} x="75" y={y} width={80 - i * 15} height="8" rx="4" fill={ac} opacity={0.35 - i * 0.08} initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 0.5, delay: i * 0.15 }} style={{ transformOrigin: "left" }} />
       ))}
-      <motion.rect x="260" y="120" width="40" height="40" rx="8" stroke="hsl(var(--accent))" strokeWidth="2" fill="hsl(var(--accent))" fillOpacity="0.08" animate={{ rotate: [0, 90, 90, 0] }} transition={{ duration: 4, repeat: Infinity }} />
-      <motion.circle cx="50" cy="130" r="4" fill="hsl(var(--accent))" opacity="0.3" animate={{ scale: [1, 1.5, 1] }} transition={{ duration: 2, repeat: Infinity }} />
-      <motion.circle cx="360" cy="200" r="6" fill="hsl(var(--foreground))" opacity="0.08" animate={{ scale: [1, 1.3, 1] }} transition={{ duration: 3, repeat: Infinity }} />
+      {[100, 118, 136].map((y, i) => (
+        <motion.rect key={`b${i}`} x="235" y={y} width={50 - i * 10} height="8" rx="4" fill={fg} opacity={0.1 - i * 0.02} initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 0.5, delay: i * 0.15 + 0.2 }} style={{ transformOrigin: "left" }} />
+      ))}
+      <motion.circle cx="120" cy="185" r="22" fill={ac} fillOpacity="0.15" stroke={ac} strokeWidth="2.5" animate={{ scale: [1, 1.08, 1] }} transition={{ duration: 2.5, repeat: Infinity }} />
+      <motion.path d="M110 185 L117 193 L132 176" stroke={ac} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.6, delay: 0.6 }} />
+      <circle cx="280" cy="185" r="22" fill={fg} fillOpacity="0.04" stroke={fg} strokeWidth="2" opacity="0.2" />
+      <line x1="270" y1="175" x2="290" y2="195" stroke={fg} strokeWidth="2.5" strokeLinecap="round" opacity="0.2" />
+      <line x1="290" y1="175" x2="270" y2="195" stroke={fg} strokeWidth="2.5" strokeLinecap="round" opacity="0.2" />
+      <motion.path d="M185 140 L200 130 L215 140" stroke={fg} strokeWidth="1.5" opacity="0.12" strokeDasharray="3 3" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1, delay: 0.8 }} />
+      <rect x="75" y="245" width="250" height="6" rx="3" fill={fg} opacity="0.05" />
+      <motion.rect x="75" y="245" width="155" height="6" rx="3" fill={ac} opacity="0.2" initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 1, delay: 0.5 }} style={{ transformOrigin: "left" }} />
+      <text x="200" y="270" textAnchor="middle" fontSize="10" fontWeight="600" fill={fg} opacity="0.15">CONFIDENCE: 78%</text>
     </svg>,
 
+    // 3. Design — artboard with UI elements, color swatches, layout grid
     <svg viewBox="0 0 400 300" fill="none" className="w-full h-full">
-      <motion.circle cx="200" cy="150" r="70" stroke="hsl(var(--foreground))" strokeWidth="2" opacity="0.1" strokeDasharray="6 4" animate={{ rotate: 360 }} transition={{ duration: 20, repeat: Infinity, ease: "linear" }} />
-      <motion.circle cx="200" cy="150" r="40" stroke="hsl(var(--accent))" strokeWidth="2" opacity="0.2" animate={{ rotate: -360 }} transition={{ duration: 15, repeat: Infinity, ease: "linear" }} />
-      <motion.rect x="185" y="135" width="30" height="30" rx="6" fill="hsl(var(--accent))" fillOpacity="0.15" stroke="hsl(var(--accent))" strokeWidth="2" />
-      <motion.circle cx="200" cy="80" r="8" fill="hsl(var(--foreground))" opacity="0.1" animate={{ scale: [1, 1.2, 1] }} transition={{ duration: 2, repeat: Infinity }} />
-      <motion.circle cx="270" cy="150" r="8" fill="hsl(var(--accent))" fillOpacity="0.25" animate={{ scale: [1, 1.2, 1] }} transition={{ duration: 2, repeat: Infinity, delay: 0.7 }} />
-      <motion.circle cx="200" cy="220" r="8" fill="hsl(var(--foreground))" opacity="0.1" animate={{ scale: [1, 1.2, 1] }} transition={{ duration: 2, repeat: Infinity, delay: 1.4 }} />
-      <motion.path d="M200 80 L200 110" stroke="hsl(var(--foreground))" strokeWidth="1.5" opacity="0.15" />
-      <motion.path d="M270 150 L240 150" stroke="hsl(var(--accent))" strokeWidth="1.5" opacity="0.25" />
-      <motion.path d="M200 190 L200 220" stroke="hsl(var(--foreground))" strokeWidth="1.5" opacity="0.15" />
-      <motion.rect x="100" y="90" width="20" height="20" rx="4" stroke="hsl(var(--foreground))" strokeWidth="1.5" opacity="0.08" animate={{ rotate: [0, 45, 0] }} transition={{ duration: 5, repeat: Infinity }} />
-      <motion.rect x="290" y="210" width="16" height="16" rx="4" stroke="hsl(var(--foreground))" strokeWidth="1.5" opacity="0.08" animate={{ rotate: [0, -45, 0] }} transition={{ duration: 5, repeat: Infinity, delay: 1 }} />
+      <rect x="80" y="40" width="240" height="200" rx="16" stroke={fg} strokeWidth="2.5" opacity="0.12" />
+      <rect x="80" y="40" width="240" height="28" fill={fg} fillOpacity="0.04" rx="16" />
+      <circle cx="98" cy="54" r="5" fill="#ff5f57" opacity="0.4" />
+      <circle cx="114" cy="54" r="5" fill="#ffbd2e" opacity="0.4" />
+      <circle cx="130" cy="54" r="5" fill="#28c840" opacity="0.4" />
+      <rect x="100" y="82" width="80" height="10" rx="5" fill={fg} opacity="0.12" />
+      <rect x="100" y="100" width="55" height="8" rx="4" fill={fg} opacity="0.07" />
+      <motion.rect x="100" y="120" width="200" height="100" rx="12" fill={ac} fillOpacity="0.08" stroke={ac} strokeWidth="2" animate={{ scale: [1, 1.015, 1] }} transition={{ duration: 3, repeat: Infinity }} />
+      <rect x="115" y="135" width="60" height="8" rx="4" fill={ac} opacity="0.3" />
+      <rect x="115" y="150" width="40" height="6" rx="3" fill={fg} opacity="0.08" />
+      <motion.rect x="115" y="170" width="70" height="26" rx="8" fill={ac} fillOpacity="0.25" stroke={ac} strokeWidth="1.5" animate={{ scale: [1, 1.05, 1] }} transition={{ duration: 2.5, repeat: Infinity, delay: 0.5 }} />
+      <rect x="230" y="135" width="55" height="55" rx="10" stroke={fg} strokeWidth="1.5" opacity="0.1" strokeDasharray="4 3" />
+      <line x1="257" y1="135" x2="257" y2="190" stroke={fg} strokeWidth="1" opacity="0.06" />
+      <line x1="230" y1="162" x2="285" y2="162" stroke={fg} strokeWidth="1" opacity="0.06" />
+      {[0, 1, 2, 3].map((i) => (
+        <motion.rect key={i} x={340 + (i % 2) * 18} y={80 + Math.floor(i / 2) * 18} width="14" height="14" rx="4" fill={i === 0 ? ac : fg} opacity={i === 0 ? 0.4 : 0.06 + i * 0.03} animate={i === 0 ? { scale: [1, 1.15, 1] } : undefined} transition={i === 0 ? { duration: 2, repeat: Infinity } : undefined} />
+      ))}
+      <motion.circle cx="55" cy="180" r="6" fill={ac} opacity="0.15" animate={{ y: [0, -5, 0] }} transition={{ duration: 3, repeat: Infinity }} />
+      <rect x="340" y="145" width="30" height="4" rx="2" fill={fg} opacity="0.06" />
+      <rect x="340" y="155" width="22" height="4" rx="2" fill={fg} opacity="0.04" />
+      <motion.circle cx="55" cy="100" r="4" fill={fg} opacity="0.08" animate={{ y: [0, 4, 0] }} transition={{ duration: 3.5, repeat: Infinity }} />
     </svg>,
 
+    // 4. Build — code editor with terminal, brackets, cursor
     <svg viewBox="0 0 400 300" fill="none" className="w-full h-full">
-      <motion.path d="M200 220 L200 100" stroke="hsl(var(--accent))" strokeWidth="3" strokeLinecap="round" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1 }} />
-      <motion.path d="M170 130 L200 90 L230 130" stroke="hsl(var(--accent))" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" fill="none" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.6, delay: 0.8 }} />
-      <motion.circle cx="200" cy="80" r="12" fill="hsl(var(--accent))" fillOpacity="0.2" stroke="hsl(var(--accent))" strokeWidth="2" animate={{ y: [0, -8, 0] }} transition={{ duration: 2, repeat: Infinity }} />
-      <motion.rect x="140" y="230" width="120" height="12" rx="6" fill="hsl(var(--foreground))" opacity="0.08" />
-      <motion.circle cx="100" cy="180" r="5" fill="hsl(var(--foreground))" opacity="0.1" animate={{ x: [0, 8, 0] }} transition={{ duration: 3, repeat: Infinity }} />
-      <motion.circle cx="300" cy="160" r="5" fill="hsl(var(--foreground))" opacity="0.1" animate={{ x: [0, -8, 0] }} transition={{ duration: 3, repeat: Infinity, delay: 1 }} />
-      <motion.rect x="80" y="100" width="30" height="30" rx="8" stroke="hsl(var(--foreground))" strokeWidth="1.5" opacity="0.08" />
-      <motion.rect x="290" y="200" width="25" height="25" rx="6" stroke="hsl(var(--foreground))" strokeWidth="1.5" opacity="0.08" />
+      <rect x="60" y="45" width="280" height="195" rx="14" stroke={fg} strokeWidth="2" opacity="0.12" />
+      <rect x="60" y="45" width="280" height="26" fill={fg} fillOpacity="0.05" rx="14" />
+      <circle cx="78" cy="58" r="4" fill="#ff5f57" opacity="0.4" />
+      <circle cx="92" cy="58" r="4" fill="#ffbd2e" opacity="0.4" />
+      <circle cx="106" cy="58" r="4" fill="#28c840" opacity="0.4" />
+      <rect x="60" y="200" width="280" height="40" fill={fg} fillOpacity="0.03" />
+      <text x="78" y="224" fontSize="10" fontFamily="monospace" fill={ac} opacity="0.4">$ pnpm build</text>
+      <motion.rect x="148" y="222" width="7" height="2" fill={ac} opacity="0.5" animate={{ opacity: [0, 0.5, 0] }} transition={{ duration: 1, repeat: Infinity }} />
+      {[{ y: 82, w: 30, c: ac, o: 0.4 }, { y: 82, x: 32, w: 50, c: fg, o: 0.1 }, { y: 98, w: 90, c: fg, o: 0.08, indent: 16 }, { y: 114, w: 70, c: ac, o: 0.25, indent: 32 }, { y: 130, w: 100, c: fg, o: 0.07, indent: 32 }, { y: 146, w: 60, c: fg, o: 0.07, indent: 32 }, { y: 162, w: 40, c: ac, o: 0.2, indent: 16 }, { y: 178, w: 25, c: fg, o: 0.08 }].map((line, i) => (
+        <motion.rect key={i} x={80 + (line.indent || 0)} y={line.y} width={line.w} height="6" rx="3" fill={line.c} opacity={line.o} initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 0.3, delay: i * 0.08 }} style={{ transformOrigin: "left" }} />
+      ))}
+      <text x="80" y="88" fontSize="9" fontFamily="monospace" fill={fg} opacity="0.08">1</text>
+      <text x="80" y="104" fontSize="9" fontFamily="monospace" fill={fg} opacity="0.08">2</text>
+      <text x="80" y="120" fontSize="9" fontFamily="monospace" fill={fg} opacity="0.08">3</text>
+      <text x="80" y="136" fontSize="9" fontFamily="monospace" fill={fg} opacity="0.08">4</text>
+      <text x="80" y="152" fontSize="9" fontFamily="monospace" fill={fg} opacity="0.08">5</text>
+      <text x="80" y="168" fontSize="9" fontFamily="monospace" fill={fg} opacity="0.08">6</text>
+      <text x="80" y="184" fontSize="9" fontFamily="monospace" fill={fg} opacity="0.08">7</text>
+      <motion.rect x="192" y="112" width="2" height="12" fill={ac} opacity="0.6" animate={{ opacity: [0, 0.6, 0] }} transition={{ duration: 1.2, repeat: Infinity }} />
+      <motion.circle cx="365" cy="80" r="5" fill={ac} opacity="0.15" animate={{ scale: [1, 1.4, 1] }} transition={{ duration: 2, repeat: Infinity }} />
+      <motion.rect x="355" y="130" width="16" height="16" rx="4" stroke={fg} strokeWidth="1.5" opacity="0.08" animate={{ rotate: [0, 90, 90, 0] }} transition={{ duration: 4, repeat: Infinity }} />
+      <rect x="355" y="165" width="28" height="4" rx="2" fill={fg} opacity="0.05" />
+      <rect x="355" y="175" width="20" height="4" rx="2" fill={fg} opacity="0.04" />
     </svg>,
 
+    // 5. Automate — gears/cogs system with connecting pipes
     <svg viewBox="0 0 400 300" fill="none" className="w-full h-full">
-      <motion.path d="M100 200 Q150 100 200 150 Q250 200 300 100" stroke="hsl(var(--accent))" strokeWidth="3" fill="none" strokeLinecap="round" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1.5 }} />
-      <motion.circle cx="100" cy="200" r="8" fill="hsl(var(--accent))" fillOpacity="0.3" />
-      <motion.circle cx="200" cy="150" r="8" fill="hsl(var(--accent))" fillOpacity="0.3" animate={{ scale: [1, 1.3, 1] }} transition={{ duration: 2, repeat: Infinity }} />
-      <motion.circle cx="300" cy="100" r="8" fill="hsl(var(--accent))" fillOpacity="0.3" />
-      <motion.path d="M300 100 L340 70" stroke="hsl(var(--accent))" strokeWidth="2" strokeDasharray="4 3" opacity="0.3" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.8, delay: 1.5 }} />
-      <motion.polygon points="340,65 348,70 340,75" fill="hsl(var(--accent))" opacity="0.4" />
-      <motion.rect x="80" y="80" width="50" height="6" rx="3" fill="hsl(var(--foreground))" opacity="0.06" />
-      <motion.rect x="80" y="94" width="35" height="6" rx="3" fill="hsl(var(--foreground))" opacity="0.06" />
-      <motion.circle cx="350" cy="220" r="20" stroke="hsl(var(--foreground))" strokeWidth="1.5" opacity="0.08" strokeDasharray="4 4" animate={{ rotate: 360 }} transition={{ duration: 10, repeat: Infinity, ease: "linear" }} />
+      <motion.g animate={{ rotate: 360 }} transition={{ duration: 12, repeat: Infinity, ease: "linear" }} style={{ transformOrigin: "160px 120px" }}>
+        <circle cx="160" cy="120" r="38" stroke={ac} strokeWidth="2.5" opacity="0.25" />
+        {[0, 45, 90, 135, 180, 225, 270, 315].map((angle, i) => {
+          const rad = (angle * Math.PI) / 180
+          const x = 160 + Math.cos(rad) * 38
+          const y = 120 + Math.sin(rad) * 38
+          return <rect key={i} x={x - 5} y={y - 5} width="10" height="10" rx="2" fill={ac} opacity="0.2" />
+        })}
+        <circle cx="160" cy="120" r="12" fill={ac} fillOpacity="0.15" stroke={ac} strokeWidth="2" />
+      </motion.g>
+      <motion.g animate={{ rotate: -360 }} transition={{ duration: 8, repeat: Infinity, ease: "linear" }} style={{ transformOrigin: "270px 170px" }}>
+        <circle cx="270" cy="170" r="28" stroke={fg} strokeWidth="2" opacity="0.12" />
+        {[0, 60, 120, 180, 240, 300].map((angle, i) => {
+          const rad = (angle * Math.PI) / 180
+          const x = 270 + Math.cos(rad) * 28
+          const y = 170 + Math.sin(rad) * 28
+          return <rect key={i} x={x - 4} y={y - 4} width="8" height="8" rx="2" fill={fg} opacity="0.1" />
+        })}
+        <circle cx="270" cy="170" r="9" fill={fg} fillOpacity="0.06" stroke={fg} strokeWidth="1.5" opacity="0.15" />
+      </motion.g>
+      <motion.g animate={{ rotate: 360 }} transition={{ duration: 10, repeat: Infinity, ease: "linear" }} style={{ transformOrigin: "310px 90px" }}>
+        <circle cx="310" cy="90" r="20" stroke={fg} strokeWidth="1.5" opacity="0.1" />
+        {[0, 72, 144, 216, 288].map((angle, i) => {
+          const rad = (angle * Math.PI) / 180
+          const x = 310 + Math.cos(rad) * 20
+          const y = 90 + Math.sin(rad) * 20
+          return <rect key={i} x={x - 3} y={y - 3} width="6" height="6" rx="1.5" fill={fg} opacity="0.08" />
+        })}
+        <circle cx="310" cy="90" r="6" fill={fg} fillOpacity="0.05" stroke={fg} strokeWidth="1.5" opacity="0.1" />
+      </motion.g>
+      <path d="M195 135 Q220 150 245 160" stroke={fg} strokeWidth="2" strokeDasharray="4 4" opacity="0.12" />
+      <path d="M293 155 Q300 120 310 110" stroke={fg} strokeWidth="1.5" strokeDasharray="3 3" opacity="0.1" />
+      <rect x="80" y="200" width="100" height="30" rx="8" stroke={fg} strokeWidth="1.5" opacity="0.08" />
+      <rect x="90" y="210" width="35" height="5" rx="2.5" fill={fg} opacity="0.08" />
+      <rect x="90" y="218" width="25" height="4" rx="2" fill={fg} opacity="0.05" />
+      <path d="M130 200 L130 170 Q130 155 145 150" stroke={fg} strokeWidth="1.5" strokeDasharray="4 3" opacity="0.1" />
+      <rect x="220" y="220" width="100" height="30" rx="8" stroke={ac} strokeWidth="1.5" opacity="0.15" />
+      <rect x="230" y="230" width="35" height="5" rx="2.5" fill={ac} opacity="0.2" />
+      <rect x="230" y="238" width="50" height="4" rx="2" fill={fg} opacity="0.05" />
+      <motion.circle cx="295" cy="235" r="6" fill={ac} opacity="0.3" animate={{ scale: [1, 1.3, 1] }} transition={{ duration: 2, repeat: Infinity }} />
+      <motion.circle cx="75" cy="80" r="5" fill={fg} opacity="0.08" animate={{ y: [0, -5, 0] }} transition={{ duration: 3, repeat: Infinity }} />
+      <motion.rect x="60" y="140" width="18" height="18" rx="4" stroke={fg} strokeWidth="1.5" opacity="0.06" animate={{ rotate: [0, 45, 0] }} transition={{ duration: 6, repeat: Infinity }} />
+    </svg>,
+
+    // 6. Launch — rocket trail going up with platform below
+    <svg viewBox="0 0 400 300" fill="none" className="w-full h-full">
+      <rect x="130" y="230" width="140" height="16" rx="8" fill={fg} opacity="0.08" />
+      <rect x="155" y="222" width="90" height="10" rx="5" fill={fg} opacity="0.05" />
+      <motion.path d="M200 210 L200 60" stroke={ac} strokeWidth="3" strokeLinecap="round" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1.2 }} />
+      <motion.path d="M175 100 L200 60 L225 100" stroke={ac} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" fill="none" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.6, delay: 0.8 }} />
+      <motion.path d="M188 75 L200 55 L212 75" stroke={ac} strokeWidth="2" strokeLinecap="round" fill={ac} fillOpacity="0.15" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4, delay: 1.2 }} />
+      {[{ cx: 192, cy: 130 }, { cx: 208, cy: 145 }, { cx: 195, cy: 160 }, { cx: 205, cy: 175 }, { cx: 198, cy: 190 }].map((p, i) => (
+        <motion.circle key={i} cx={p.cx} cy={p.cy} r={4 - i * 0.4} fill={ac} opacity={0.3 - i * 0.04} animate={{ opacity: [0.15, 0.35, 0.15], y: [0, 3, 0] }} transition={{ duration: 1.5, repeat: Infinity, delay: i * 0.2 }} />
+      ))}
+      {[70, 90, 110, 130].map((y, i) => (
+        <motion.line key={i} x1={240 + i * 12} y1={y} x2={240 + i * 12} y2={y + 15} stroke={fg} strokeWidth="1.5" strokeLinecap="round" opacity={0.06 + i * 0.02} animate={{ y: [0, 5, 0] }} transition={{ duration: 2, repeat: Infinity, delay: i * 0.3 }} />
+      ))}
+      {[80, 100, 120].map((y, i) => (
+        <motion.line key={i} x1={100 - i * 12} y1={y} x2={100 - i * 12} y2={y + 12} stroke={fg} strokeWidth="1.5" strokeLinecap="round" opacity={0.06 + i * 0.02} animate={{ y: [0, 5, 0] }} transition={{ duration: 2, repeat: Infinity, delay: i * 0.25 + 0.5 }} />
+      ))}
+      <rect x="80" y="250" width="60" height="5" rx="2.5" fill={fg} opacity="0.04" />
+      <rect x="260" y="250" width="50" height="5" rx="2.5" fill={fg} opacity="0.04" />
+      <motion.circle cx="320" cy="80" r="6" fill={fg} opacity="0.06" animate={{ scale: [1, 1.3, 1] }} transition={{ duration: 3, repeat: Infinity }} />
+      <motion.circle cx="80" cy="180" r="5" fill={fg} opacity="0.06" animate={{ scale: [1, 1.2, 1] }} transition={{ duration: 3.5, repeat: Infinity }} />
+      <motion.rect x="300" y="190" width="22" height="22" rx="6" stroke={fg} strokeWidth="1.5" opacity="0.06" />
+      <motion.rect x="65" y="100" width="18" height="18" rx="4" stroke={fg} strokeWidth="1.5" opacity="0.06" />
+    </svg>,
+
+    // 7. Improve — growth chart with axes, grid, data points, trend line
+    <svg viewBox="0 0 400 300" fill="none" className="w-full h-full">
+      <line x1="70" y1="40" x2="70" y2="240" stroke={fg} strokeWidth="2" opacity="0.15" />
+      <line x1="70" y1="240" x2="360" y2="240" stroke={fg} strokeWidth="2" opacity="0.15" />
+      {[200, 160, 120, 80].map((y, i) => (
+        <g key={i}>
+          <line x1="70" y1={y} x2="360" y2={y} stroke={fg} strokeWidth="1" opacity="0.05" strokeDasharray="4 4" />
+          <text x="60" y={y + 4} textAnchor="end" fontSize="9" fill={fg} opacity="0.1">{(i + 1) * 25}</text>
+        </g>
+      ))}
+      {["v1", "v2", "v3", "v4", "v5"].map((label, i) => (
+        <text key={i} x={110 + i * 55} y="258" textAnchor="middle" fontSize="9" fill={fg} opacity="0.12">{label}</text>
+      ))}
+      <polygon points="70,36 66,44 74,44" fill={fg} opacity="0.15" />
+      <polygon points="364,240 356,236 356,244" fill={fg} opacity="0.15" />
+      {[{ x: 110, h: 50 }, { x: 165, h: 80 }, { x: 220, h: 70 }, { x: 275, h: 110 }, { x: 330, h: 145 }].map((bar, i) => (
+        <motion.rect key={i} x={bar.x - 14} y={240 - bar.h} width="28" height={bar.h} rx="4" fill={ac} opacity={0.12 + i * 0.03} initial={{ scaleY: 0 }} animate={{ scaleY: 1 }} transition={{ duration: 0.5, delay: i * 0.15 }} style={{ transformOrigin: "center bottom" }} />
+      ))}
+      <motion.path d="M110 190 L165 160 L220 170 L275 130 L330 95" stroke={ac} strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1.5, delay: 0.5 }} />
+      {[{ x: 110, y: 190 }, { x: 165, y: 160 }, { x: 220, y: 170 }, { x: 275, y: 130 }, { x: 330, y: 95 }].map((p, i) => (
+        <motion.circle key={i} cx={p.x} cy={p.y} r="5" fill="white" stroke={ac} strokeWidth="2.5" initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ duration: 0.3, delay: 0.6 + i * 0.15 }} />
+      ))}
+      <motion.path d="M330 95 L355 75" stroke={ac} strokeWidth="2" strokeDasharray="4 3" opacity="0.35" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.6, delay: 1.8 }} />
+      <motion.circle cx="362" cy="70" r="8" stroke={ac} strokeWidth="2" fill={ac} fillOpacity="0.15" initial={{ scale: 0 }} animate={{ scale: [0, 1.1, 1] }} transition={{ duration: 0.5, delay: 2.2 }} />
+      <motion.path d="M358 70 L362 74 L368 66" stroke={ac} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.4, delay: 2.5 }} />
+      <text x="200" y="278" textAnchor="middle" fontSize="10" fontWeight="600" fill={fg} opacity="0.1">ITERATIONS</text>
     </svg>,
   ]
 

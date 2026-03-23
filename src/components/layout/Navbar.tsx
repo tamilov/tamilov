@@ -1,13 +1,13 @@
 import { useState } from "react"
 import { motion, useScroll, useMotionValueEvent } from "framer-motion"
 import { Menu, X } from "lucide-react"
+import { Link } from "wouter"
 import { Button } from "@/components/ui/Button"
 
 const navLinks = [
-  { name: "Ecosystem", href: "#ecosystem" },
-  { name: "Factory", href: "#factory" },
-  { name: "Philosophy", href: "#philosophy" },
-  { name: "Notes", href: "#notes" },
+  { name: "PineApple", href: "/projects/pineapple" },
+  { name: "All Projects", href: "/projects" },
+  { name: "Notes", href: "/notes" },
 ]
 
 export function Navbar() {
@@ -19,16 +19,6 @@ export function Navbar() {
     setIsScrolled(latest > 20)
   })
 
-  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault()
-    setMobileMenuOpen(false)
-    const element = document.querySelector(href)
-    if (element) {
-      const top = element.getBoundingClientRect().top + window.scrollY - 100
-      window.scrollTo({ top, behavior: "smooth" })
-    }
-  }
-
   return (
     <header 
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
@@ -37,42 +27,28 @@ export function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
-          {/* Logo */}
-          <a 
-            href="/" 
+          <Link
+            href="/"
             className="text-2xl font-black tracking-tighter text-foreground hover:text-accent transition-colors"
-            onClick={(e) => {
-              e.preventDefault()
-              window.scrollTo({ top: 0, behavior: "smooth" })
-            }}
           >
             Tamilov.
-          </a>
+          </Link>
 
-          {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.name}
                 href={link.href}
-                onClick={(e) => scrollToSection(e, link.href)}
                 className="text-sm font-semibold text-muted-foreground hover:text-foreground transition-colors"
               >
                 {link.name}
-              </a>
+              </Link>
             ))}
-            <Button 
-              size="sm" 
-              onClick={(e) => {
-                const el = document.querySelector("#work") as HTMLAnchorElement
-                if (el) scrollToSection(e as any, "#work")
-              }}
-            >
-              Work Together
-            </Button>
+            <Link href="/contact">
+              <Button size="sm">Work Together</Button>
+            </Link>
           </nav>
 
-          {/* Mobile Menu Toggle */}
           <button 
             className="md:hidden p-2 -mr-2 text-foreground"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -82,7 +58,6 @@ export function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Nav */}
       {mobileMenuOpen && (
         <motion.div 
           initial={{ opacity: 0, y: -10 }}
@@ -91,24 +66,18 @@ export function Navbar() {
         >
           <div className="flex flex-col px-4 py-6 gap-4">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.name}
                 href={link.href}
-                onClick={(e) => scrollToSection(e, link.href)}
+                onClick={() => setMobileMenuOpen(false)}
                 className="text-lg font-bold text-foreground py-2 border-b-2 border-muted"
               >
                 {link.name}
-              </a>
+              </Link>
             ))}
-            <Button 
-              className="mt-4 w-full"
-              onClick={(e) => {
-                const el = document.querySelector("#work") as HTMLAnchorElement
-                if (el) scrollToSection(e as any, "#work")
-              }}
-            >
-              Work Together
-            </Button>
+            <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>
+              <Button className="mt-4 w-full">Work Together</Button>
+            </Link>
           </div>
         </motion.div>
       )}
