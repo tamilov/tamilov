@@ -33,10 +33,10 @@ export function Footer() {
           <div>
             <h4 className="text-lg font-bold text-white mb-6 uppercase tracking-widest">Connect</h4>
             <ul className="space-y-4">
-              <li><a href="#" className="text-gray-400 font-medium hover:text-accent transition-colors">Twitter / X</a></li>
-              <li><a href="#" className="text-gray-400 font-medium hover:text-accent transition-colors">Telegram</a></li>
-              <li><a href="#" className="text-gray-400 font-medium hover:text-accent transition-colors">Email</a></li>
-              <li><a href="#" className="text-gray-400 font-medium hover:text-accent transition-colors">Newsletter</a></li>
+              <li><a href="https://x.com/tamilovDev" target="_blank" rel="noopener noreferrer" className="text-gray-400 font-medium hover:text-accent transition-colors">Twitter / X</a></li>
+              <li><a href="https://t.me/tamilovDev" target="_blank" rel="noopener noreferrer" className="text-gray-400 font-medium hover:text-accent transition-colors">Telegram</a></li>
+              <li><a href="mailto:hello@tamilov.com" className="text-gray-400 font-medium hover:text-accent transition-colors">Email</a></li>
+              <li><Link href="/notes" className="text-gray-400 font-medium hover:text-accent transition-colors">Newsletter</Link></li>
             </ul>
           </div>
 

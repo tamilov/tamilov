@@ -19,7 +19,7 @@ run = "pnpm --filter @workspace/tamilov run dev"
 
 [services.production]
 build = [ "pnpm", "--filter", "@workspace/tamilov", "run", "build" ]
-publicDir = "artifacts/tamilov/dist/public"
+publicDir = "artifacts/tamilov/dist"
 serve = "static"
 
 [[services.production.rewrites]]

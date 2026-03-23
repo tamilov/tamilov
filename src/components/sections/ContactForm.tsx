@@ -1,9 +1,9 @@
-import { useState } from "react"
+import { useState, useRef } from "react"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/Button"
 import { CheckCircle, AlertCircle } from "lucide-react"
 
-interface FormData {
+interface ContactData {
   name: string
   email: string
   company: string
@@ -12,17 +12,33 @@ interface FormData {
 
 type FormStatus = "idle" | "submitting" | "success" | "error"
 
-async function submitContact(_data: FormData): Promise<void> {
-  await new Promise((r) => setTimeout(r, 1200))
+async function submitContact(data: ContactData, honeypot: string): Promise<void> {
+  const res = await fetch("/api/contact", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      name: data.name,
+      email: data.email,
+      company: data.company || undefined,
+      message: data.message,
+      _honeypot: honeypot,
+    }),
+  })
+
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}))
+    throw new Error(err.error || "Failed to send message")
+  }
 }
 
 export function ContactForm({ compact = false }: { compact?: boolean }) {
-  const [form, setForm] = useState<FormData>({ name: "", email: "", company: "", message: "" })
+  const [form, setForm] = useState<ContactData>({ name: "", email: "", company: "", message: "" })
   const [status, setStatus] = useState<FormStatus>("idle")
-  const [errors, setErrors] = useState<Partial<FormData>>({})
+  const [errors, setErrors] = useState<Partial<ContactData>>({})
+  const honeypotRef = useRef<HTMLInputElement>(null)
 
   const validate = (): boolean => {
-    const newErrors: Partial<FormData> = {}
+    const newErrors: Partial<ContactData> = {}
     if (!form.name.trim()) newErrors.name = "Name is required"
     if (!form.email.trim()) newErrors.email = "Email is required"
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) newErrors.email = "Invalid email"
@@ -36,7 +52,7 @@ export function ContactForm({ compact = false }: { compact?: boolean }) {
     if (!validate()) return
     setStatus("submitting")
     try {
-      await submitContact(form)
+      await submitContact(form, honeypotRef.current?.value || "")
       setStatus("success")
     } catch {
       setStatus("error")
@@ -53,7 +69,7 @@ export function ContactForm({ compact = false }: { compact?: boolean }) {
         <div className="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-6">
           <CheckCircle className="w-8 h-8 text-foreground" />
         </div>
-        <h3 className="text-2xl font-black text-foreground mb-3">Message received</h3>
+        <h3 className="text-2xl font-black text-foreground mb-3">Message sent</h3>
         <p className="text-lg text-muted-foreground font-medium mb-6">
           Thanks for reaching out. I'll get back to you within 48 hours.
         </p>
@@ -90,6 +106,14 @@ export function ContactForm({ compact = false }: { compact?: boolean }) {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
+      <input
+        ref={honeypotRef}
+        type="text"
+        name="_honeypot"
+        tabIndex={-1}
+        autoComplete="off"
+        style={{ position: "absolute", left: "-9999px", opacity: 0, height: 0, width: 0 }}
+      />
       <div className={compact ? "grid grid-cols-1 sm:grid-cols-2 gap-5" : "grid grid-cols-1 gap-5"}>
         <div>
           <label className="block text-sm font-bold text-foreground mb-2">Name *</label>
