@@ -13,25 +13,25 @@ const products = [
   {
     name: "BuildKit",
     desc: "Component library for rapid premium product design.",
-    status: "live",
+    status: "in development",
     href: null,
   },
   {
     name: "NoteStack",
     desc: "Structured interconnected knowledge base for builders.",
-    status: "live",
+    status: "in development",
     href: null,
   },
   {
     name: "FormFlow",
     desc: "Smart form builder with complex logic and automation.",
-    status: "beta",
+    status: "concept",
     href: null,
   },
   {
     name: "Orbit",
     desc: "Creator analytics and aggregated growth dashboard.",
-    status: "beta",
+    status: "concept",
     href: null,
   },
   {

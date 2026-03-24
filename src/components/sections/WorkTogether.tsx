@@ -5,22 +5,22 @@ const services = [
   {
     title: "Product Landing Pages",
     desc: "High-converting, extremely bold pages built for digital products and SaaS launches.",
-    price: "$2,400"
+    price: "$100"
   },
   {
     title: "Branded Interfaces",
     desc: "Custom UI systems with your brand's language, design tokens, and interaction models.",
-    price: "$4,800"
+    price: "$350"
   },
   {
     title: "Digital Systems",
     desc: "Automated workflows, product pipelines, and custom digital infrastructure.",
-    price: "$6,000"
+    price: "$640"
   },
   {
     title: "Concept to MVP",
     desc: "From raw idea validation to a fully launched product, end to end.",
-    price: "$9,600"
+    price: "$920"
   }
 ]
 

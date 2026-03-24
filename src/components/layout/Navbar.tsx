@@ -5,9 +5,9 @@ import { Link } from "wouter"
 import { Button } from "@/components/ui/Button"
 
 const navLinks = [
-  { name: "PineApple", href: "/projects/pineapple" },
   { name: "All Projects", href: "/projects" },
   { name: "Notes", href: "/notes" },
+  { name: "PineApple", href: "/projects/pineapple" },
 ]
 
 export function Navbar() {

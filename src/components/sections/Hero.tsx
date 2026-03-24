@@ -36,18 +36,14 @@ export function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <div className="inline-flex items-center gap-2 px-3 py-1 mb-6 rounded-full border-2 border-foreground bg-accent text-accent-foreground text-sm font-bold shadow-brutal-sm">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-foreground opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-foreground"></span>
-                </span>
-                Systems Online
+              <div className="inline-flex items-center px-3 py-1 mb-6 rounded-full border-2 border-foreground bg-accent text-accent-foreground text-sm font-bold shadow-brutal-sm">
+                Digital Product Brand
               </div>
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-[1.1] tracking-tighter text-foreground mb-6">
                 Tamilov builds digital products, systems, and experiments.
               </h1>
               <p className="text-xl md:text-2xl text-muted-foreground font-medium mb-10 max-w-2xl">
-                PineApple is the factory. Tamilov is the brand. A fully automated machine for creating the next generation of digital tools.
+                PineApple is the internal factory. Tamilov is the brand. A system for building and shipping digital products — one at a time.
               </p>
             </motion.div>
 
@@ -124,12 +120,12 @@ export function Hero() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-20">
         <div className="border-2 border-foreground rounded-2xl bg-white shadow-brutal flex flex-col md:flex-row overflow-hidden divide-y-2 md:divide-y-0 md:divide-x-2 divide-foreground">
           <div className="p-6 flex-1 flex flex-col items-center justify-center text-center group hover:bg-muted/50 transition-colors">
-            <span className="text-4xl font-black text-foreground mb-1">7</span>
-            <span className="text-sm font-bold text-muted-foreground uppercase tracking-widest">Products in Dev</span>
+            <span className="text-4xl font-black text-foreground mb-1">5+</span>
+            <span className="text-sm font-bold text-muted-foreground uppercase tracking-widest">In the Pipeline</span>
           </div>
           <div className="p-6 flex-1 flex flex-col items-center justify-center text-center group hover:bg-muted/50 transition-colors bg-accent/10">
-            <span className="text-4xl font-black text-accent mb-1">3</span>
-            <span className="text-sm font-bold text-muted-foreground uppercase tracking-widest">Live Now</span>
+            <span className="text-4xl font-black text-accent mb-1">Open</span>
+            <span className="text-sm font-bold text-muted-foreground uppercase tracking-widest">Building in Public</span>
           </div>
           <div className="p-6 flex-1 flex flex-col items-center justify-center text-center group hover:bg-muted/50 transition-colors">
             <span className="text-4xl font-black text-foreground mb-1">100%</span>

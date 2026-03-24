@@ -28,14 +28,14 @@ export const allNotes: NoteEntry[] = [
     title: "The case for over-engineered systems",
     date: "February 2026",
     category: "Product Philosophy",
-    excerpt: "Most people say keep it simple. I say build the machine first. Why investing heavily in infrastructure pays off.",
+    excerpt: "Most people build outputs. A smaller number build systems that keep producing outputs. That second path looks slower at first — but it compounds.",
     content: [
-      "\"Keep it simple\" is the most repeated advice in product development. And for good reason — premature optimization kills more projects than bad ideas do.",
-      "But there's a nuance that gets lost. If you're building one product, simplicity wins. If you're building a factory that will produce dozens of products, the rules change.",
-      "PineApple exists because I got tired of repeating the same setup, the same patterns, the same launch checklist for every new product. The overhead of building a reusable system was high upfront, but now every new product in the Tamilov ecosystem launches faster than the last.",
-      "The trick is knowing when to invest in infrastructure versus when to ship quick. My rule: if I'll do it more than three times, I systematize it. If it's a one-off experiment, I keep it scrappy.",
-      "Over-engineering isn't about complexity for its own sake. It's about building the right abstractions so that future work becomes trivially simple. The best systems feel effortless to use precisely because someone put in the effort to design them well.",
-      "Build the machine. Then let the machine build the products."
+      "\"Don't overcomplicate it\" is common advice. And in many cases, it's right. But there's a difference between unnecessary complexity and intentional systems design.",
+      "A lot of people build outputs. A smaller number build systems that keep producing outputs long after the first launch. That second path looks slower at the beginning, but it compounds.",
+      "Over-engineered systems get a bad reputation because they're often associated with waste: too many abstractions, too many tools, too much architecture before there's a real need. But when done well, systems design is not about excess. It's about repeatability.",
+      "That's the role PineApple plays inside Tamilov. It exists so that each new product doesn't start from zero. Design patterns, component logic, structure, launch flow, writing standards — these are all parts of a machine that make future work faster and better.",
+      "A good system doesn't remove creativity. It protects it. It removes the noise around execution so attention can stay on what actually matters: taste, product judgment, positioning, and speed.",
+      "A one-off success is useful. A system that can produce multiple useful things is better."
     ]
   },
   {
@@ -43,14 +43,14 @@ export const allNotes: NoteEntry[] = [
     title: "What Gumroad got right about design",
     date: "January 2026",
     category: "Design Systems",
-    excerpt: "Bold typography, thick borders, and direct messaging. A masterclass in creator-economy design language.",
+    excerpt: "A lot of modern product sites are visually polished but emotionally forgettable. Gumroad is one of the better examples of the opposite.",
     content: [
-      "Gumroad's design language is one of the most distinctive in the creator economy. Bold sans-serif type, thick outlines, high-contrast color, and no filler. It communicates confidence and clarity in every pixel.",
-      "What makes it work isn't any single element — it's the consistency. Every component follows the same rules. Every page feels like it belongs to the same world. That's what a real design system achieves.",
-      "The Tamilov visual identity borrows from this approach. Not as a copy, but as inspiration. The principles are the same: bold over subtle, clear over clever, direct over decorated.",
-      "In practice, this means thick borders on every card, Inter as the workhorse typeface at heavy weights, a near-black and off-white palette with a single accent color, and no unnecessary shadows or gradients.",
-      "The result is a design language that feels premium without being corporate, playful without being casual, and distinctive without being noisy.",
-      "Good design isn't about making things pretty. It's about making decisions visible. Every border, every font weight, every color choice is a statement about what you value."
+      "A lot of modern product sites are visually polished but emotionally forgettable. They look correct, but they don't feel distinct. Gumroad has long been one of the better examples of the opposite.",
+      "What it gets right starts with hierarchy. Big type. Strong contrast. Clear blocks. No confusion about what matters most on the page.",
+      "That sounds simple, but most brands dilute themselves through caution. They make everything balanced, everything clean, everything safe. In the process, they lose memorability.",
+      "Gumroad shows that simplicity does not have to mean flatness. A site can be minimal and still have character. It can be structured and still feel alive.",
+      "That design philosophy influenced Tamilov directly. Not in the sense of copying layouts, but in understanding that brand presence often comes from confidence, not decoration. If the type is strong, the spacing is deliberate, and the message is clear, the site does not need much else.",
+      "The lesson is not \"design like Gumroad.\" The lesson is that clarity with personality beats generic polish almost every time."
     ]
   },
   {
