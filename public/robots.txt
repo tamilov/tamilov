@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.tamilov.com/sitemap.xml
+Sitemap: https://tamilov.com/sitemap.xml
