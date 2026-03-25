@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/Badge"
 const products = [
   {
     name: "PineApple",
-    desc: "The automated factory. The engine behind everything.",
+    desc: "The internal engine behind Tamilov. Powers the build process across all products. v2 in active development.",
     status: "internal",
     href: "/projects/pineapple",
   },

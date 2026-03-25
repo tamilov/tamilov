@@ -4,6 +4,7 @@ import Projects from "@/pages/projects"
 import PineApple from "@/pages/pineapple"
 import Notes from "@/pages/notes"
 import NoteDetail from "@/pages/note-detail"
+import Devlog from "@/pages/devlog"
 import Contact from "@/pages/contact"
 import Privacy from "@/pages/privacy"
 import Terms from "@/pages/terms"
@@ -17,6 +18,7 @@ function App() {
       <Route path="/projects/pineapple" component={PineApple} />
       <Route path="/notes" component={Notes} />
       <Route path="/notes/:slug" component={NoteDetail} />
+      <Route path="/devlog" component={Devlog} />
       <Route path="/contact" component={Contact} />
       <Route path="/privacy" component={Privacy} />
       <Route path="/terms" component={Terms} />

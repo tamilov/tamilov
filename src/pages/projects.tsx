@@ -7,7 +7,7 @@ import { PageLayout } from "@/components/layout/PageLayout"
 const projects = [
   {
     name: "PineApple",
-    desc: "The automated factory. The engine behind the entire Tamilov ecosystem — handling idea validation, design, build, launch, and iteration.",
+    desc: "The internal engine behind Tamilov. Powers how products are researched, structured, designed, built, and improved. Not publicly launched — v2 in active development.",
     status: "internal" as const,
     role: "Core infrastructure",
     href: "/projects/pineapple",
