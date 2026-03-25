@@ -64,50 +64,53 @@ export function Hero() {
           </div>
 
           {/* Right Content - Abstract Diagram */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.3 }}
-            className="lg:col-span-5 relative h-[400px] w-full hidden md:block"
+            className="lg:col-span-5 hidden md:flex items-center justify-center"
           >
-            <div className="absolute inset-0 flex items-center justify-center">
+            {/* Fixed-size diagram wrapper — never stretches with column */}
+            <div className="relative w-[360px] h-[360px] flex-shrink-0 overflow-visible">
               {/* Central Node */}
-              <div className="relative z-20 bg-foreground text-background w-32 h-32 rounded-2xl border-4 border-accent flex flex-col items-center justify-center shadow-brutal-lg rotate-3 hover:rotate-0 transition-transform duration-300">
-                <Layers className="w-10 h-10 mb-2 text-accent" />
-                <span className="font-black">PineApple</span>
+              <div className="absolute inset-0 flex items-center justify-center z-20">
+                <div className="bg-foreground text-background w-28 h-28 rounded-2xl border-4 border-accent flex flex-col items-center justify-center shadow-brutal-lg rotate-3 hover:rotate-0 transition-transform duration-300">
+                  <Layers className="w-9 h-9 mb-1 text-accent" />
+                  <span className="font-black text-sm">PineApple</span>
+                </div>
               </div>
 
-              {/* Orbital Nodes */}
+              {/* Orbital Nodes — positioned relative to the 360×360 box */}
               <div className="absolute inset-0 animate-orbit-spin">
-                {/* Node 1 */}
-                <div className="absolute top-10 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                {/* Node 1 — top centre */}
+                <div className="absolute top-[20px] left-1/2 -translate-x-1/2">
                   <div className="animate-orbit-counter-spin">
-                    <div className="bg-white border-2 border-foreground w-14 h-14 rounded-full flex items-center justify-center shadow-brutal animate-pulse" style={{ animationDuration: '3s' }}>
-                      <Terminal className="w-6 h-6 text-foreground" />
+                    <div className="bg-white border-2 border-foreground w-12 h-12 rounded-full flex items-center justify-center shadow-brutal animate-pulse" style={{ animationDuration: '3s' }}>
+                      <Terminal className="w-5 h-5 text-foreground" />
                     </div>
                   </div>
                 </div>
-                {/* Node 2 */}
-                <div className="absolute bottom-10 left-1/4 -translate-x-1/2 translate-y-1/2">
+                {/* Node 2 — bottom left */}
+                <div className="absolute bottom-[24px] left-[48px]">
                   <div className="animate-orbit-counter-spin">
-                    <div className="bg-white border-2 border-foreground w-12 h-12 rounded-xl flex items-center justify-center shadow-brutal">
+                    <div className="bg-white border-2 border-foreground w-11 h-11 rounded-xl flex items-center justify-center shadow-brutal">
                       <Zap className="w-5 h-5 text-accent" />
                     </div>
                   </div>
                 </div>
-                {/* Node 3 */}
-                <div className="absolute bottom-1/4 right-10 translate-x-1/2 translate-y-1/2">
+                {/* Node 3 — right, outside outer circle */}
+                <div className="absolute top-1/2 right-[-28px] -translate-y-1/2">
                   <div className="animate-orbit-counter-spin">
-                    <div className="bg-accent border-2 border-foreground w-16 h-16 rounded-full flex items-center justify-center shadow-brutal">
-                      <span className="font-black text-foreground">UI</span>
+                    <div className="bg-accent border-2 border-foreground w-14 h-14 rounded-full flex items-center justify-center shadow-brutal">
+                      <span className="font-black text-foreground text-sm">UI</span>
                     </div>
                   </div>
                 </div>
-                
-                {/* Connecting SVG lines (simplified) */}
-                <svg className="absolute inset-0 w-full h-full -z-10 pointer-events-none" viewBox="0 0 400 400">
-                  <circle cx="200" cy="200" r="120" className="stroke-muted stroke-2 fill-none stroke-dashed" strokeDasharray="8 8" />
-                  <circle cx="200" cy="200" r="180" className="stroke-muted stroke-2 fill-none" />
+
+                {/* SVG orbit rings — tied to the same 360×360 space */}
+                <svg className="absolute inset-0 w-full h-full -z-10 pointer-events-none" viewBox="0 0 360 360">
+                  <circle cx="180" cy="180" r="108" stroke="hsl(var(--muted-foreground))" strokeWidth="1.5" fill="none" strokeDasharray="7 7" />
+                  <circle cx="180" cy="180" r="160" stroke="hsl(var(--muted-foreground))" strokeWidth="1.5" fill="none" />
                 </svg>
               </div>
             </div>
