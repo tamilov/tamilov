@@ -79,35 +79,38 @@ export const handler: Handler = async (event: HandlerEvent) => {
         `Email: ${email}`,
         company ? `Project / Company: ${company}` : "",
         "",
-        `Message:\n${message}`,
+        `Message:`,
+        message,
         "",
-        "Sent from Tamilov contact form",
+        "-- tamilov.com",
       ]
         .filter(Boolean)
         .join("\n"),
       html: `
-        <div style="font-family:Inter,Arial,sans-serif;max-width:560px;margin:0 auto;color:#1a1a1a;background:#fff">
-          <h2 style="font-size:22px;font-weight:700;margin:0 0 12px">New Contact Form Submission</h2>
-          <div style="border-bottom:3px solid #F5A623;margin-bottom:24px"></div>
+        <div style="font-family:Inter,Arial,sans-serif;max-width:600px;margin:0 auto;padding:32px 16px;background:#f2f2f0">
+          <div style="background:#ffffff;border-radius:12px;padding:32px;border:1px solid #e2e2de">
+            <h2 style="font-size:22px;font-weight:700;margin:0 0 12px;color:#1a1a1a">New Contact Form Submission</h2>
+            <div style="border-bottom:3px solid #F5A623;margin-bottom:24px"></div>
 
-          <table style="width:100%;border-collapse:collapse;margin-bottom:28px">
-            <tr>
-              <td style="padding:10px 16px 10px 0;font-weight:600;color:#1a1a1a;width:140px;vertical-align:top">Name</td>
-              <td style="padding:10px 0;color:#444">${esc(name)}</td>
-            </tr>
-            <tr>
-              <td style="padding:10px 16px 10px 0;font-weight:600;color:#1a1a1a;vertical-align:top">Email</td>
-              <td style="padding:10px 0"><a href="mailto:${esc(email)}" style="color:#1a1a1a">${esc(email)}</a></td>
-            </tr>
-            ${companyLine}
-          </table>
+            <table style="width:100%;border-collapse:collapse;margin-bottom:28px">
+              <tr>
+                <td style="padding:10px 16px 10px 0;font-weight:600;color:#1a1a1a;width:140px;vertical-align:top">Name</td>
+                <td style="padding:10px 0;color:#444">${esc(name)}</td>
+              </tr>
+              <tr>
+                <td style="padding:10px 16px 10px 0;font-weight:600;color:#1a1a1a;vertical-align:top">Email</td>
+                <td style="padding:10px 0"><a href="mailto:${esc(email)}" style="color:#1a1a1a">${esc(email)}</a></td>
+              </tr>
+              ${companyLine}
+            </table>
 
-          <div style="border-left:4px solid #F5A623;background:#f5f5f5;padding:16px 20px;border-radius:6px;margin-bottom:28px">
-            <p style="font-weight:700;margin:0 0 8px;color:#1a1a1a">Message</p>
-            <p style="white-space:pre-line;margin:0;line-height:1.6;color:#333">${esc(message)}</p>
+            <div style="border-left:4px solid #F5A623;background:#f5f5f3;padding:16px 20px;border-radius:6px;margin-bottom:28px">
+              <p style="font-weight:700;margin:0 0 8px;color:#1a1a1a">Message</p>
+              <p style="white-space:pre-line;margin:0;line-height:1.6;color:#333">${esc(message)}</p>
+            </div>
+
+            <p style="font-size:12px;color:#aaa;margin:0;border-top:1px solid #eeede9;padding-top:16px">tamilov.com</p>
           </div>
-
-          <p style="font-size:13px;color:#999;margin:0">Sent from Tamilov contact form</p>
         </div>
       `,
     });
