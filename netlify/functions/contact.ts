@@ -87,7 +87,7 @@ export const handler: Handler = async (event: HandlerEvent) => {
         .filter(Boolean)
         .join("\n"),
       html: `
-        <div style="font-family:Inter,Arial,sans-serif;max-width:600px;margin:0 auto;padding:32px 16px;background:#f2f2f0">
+        <div style="font-family:Inter,Arial,sans-serif;max-width:600px;margin:0 auto;padding:32px 16px">
           <div style="background:#ffffff;border-radius:12px;padding:32px;border:1px solid #e2e2de">
             <h2 style="font-size:22px;font-weight:700;margin:0 0 12px;color:#1a1a1a">New Contact Form Submission</h2>
             <div style="border-bottom:3px solid #F5A623;margin-bottom:24px"></div>
