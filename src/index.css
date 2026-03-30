@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: 'Inter', sans-serif;
+
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  --color-border: hsl(var(--border));
+  --color-border-heavy: hsl(var(--border-heavy));
+
+  --color-status-live: hsl(var(--status-live));
+  --color-status-beta: hsl(var(--status-beta));
+  --color-status-concept: hsl(var(--status-concept));
+  --color-status-internal: hsl(var(--status-internal));
+}
+
+:root {
+  /* Warm off-white #FAFAF8 */
+  --background: 60 14% 98%;
+  /* Near-black #1A1A1A */
+  --foreground: 0 0% 10%;
+  
+  /* White cards */
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 10%;
+  
+  /* Light gray muted #E5E5E0 */
+  --muted: 60 8% 89%;
+  /* Dark gray muted text #4A4A45 */
+  --muted-foreground: 60 4% 28%;
+  
+  /* Warm citrus/amber #F5A623 */
+  --accent: 38 90% 55%;
+  --accent-foreground: 0 0% 10%;
+
+  /* Borders */
+  --border: 60 8% 89%;
+  --border-heavy: 0 0% 10%;
+
+  /* Status Colors */
+  --status-live: 160 84% 39%; /* Emerald */
+  --status-beta: 38 90% 55%; /* Amber */
+  --status-concept: 60 4% 28%; /* Dark Gray */
+  --status-internal: 0 0% 10%; /* Near Black */
+}
+
+@layer base {
+  * {
+    @apply border-border-heavy;
+  }
+  
+  body {
+    @apply bg-background text-foreground font-sans antialiased selection:bg-accent selection:text-foreground overflow-x-hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply tracking-tight font-bold text-foreground;
+  }
+}
+
+@layer utilities {
+  .shadow-brutal {
+    box-shadow: 4px 4px 0px 0px hsl(var(--foreground));
+  }
+  .shadow-brutal-lg {
+    box-shadow: 6px 6px 0px 0px hsl(var(--foreground));
+  }
+  .shadow-brutal-sm {
+    box-shadow: 2px 2px 0px 0px hsl(var(--foreground));
+  }
+  .shadow-brutal-accent {
+    box-shadow: 4px 4px 0px 0px hsl(var(--accent));
+  }
+  
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+@keyframes orbit-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes orbit-counter-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+
+.animate-orbit-spin {
+  animation: orbit-spin 40s linear infinite;
+}
+.animate-orbit-counter-spin {
+  animation: orbit-counter-spin 40s linear infinite;
+}
